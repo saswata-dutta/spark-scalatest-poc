@@ -25,6 +25,8 @@ class DataFrameSpec extends AnyFunSuite with Matchers with SparkSessionTestWrapp
       actualDf.collect().map(r => (r.getInt(0), r.getString(1))).toSet
 
     // Assert
+
+    // be careful about ordering, so always sort or convert to set
     actualColumns shouldEqual expectedColumns
     actualRows shouldEqual expectedRows
   }
