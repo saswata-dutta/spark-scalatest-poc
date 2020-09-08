@@ -21,4 +21,9 @@ object Process {
 
   def snakeCaseName()(df: DataFrame): DataFrame =
     df.withColumn("snake_case_name", snakeCaseUdf(col("name")))
+
+  def apply(df: DataFrame): DataFrame = df.
+    transform(snakeCaseName()).
+    transform(addGreeting()).
+    transform(addCustomColumn("species", "human"))
 }

@@ -9,10 +9,7 @@ object Main {
     val df = readCsv(spark, dataPath)
 
     // separate each logical processing step so they can be chained and individually tested
-    val processed = df.
-      transform(snakeCaseName()).
-      transform(addGreeting()).
-      transform(addCustomColumn("species", "human"))
+    val processed = Process(df)
 
     processed.show(truncate = false)
   }
